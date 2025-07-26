@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kỷ niệm 1 năm yêu nhau</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 50px;
+      font-size: 3rem;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+    img, video {
+      max-width: 90%;
+      border-radius: 20px;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .wish-box {
+      position: absolute;
+      bottom: 10%;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 1.2rem;
+      color: #d81b60;
+      text-align: center;
+      animation: fadeUp 2s ease-out;
+      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .falling-text {
+      position: fixed;
+      top: -50px;
+      font-size: 2rem;
+      color: #ff4081;
+      animation: fall 6s linear infinite;
+      pointer-events: none;
+      opacity: 0.9;
+      font-weight: bold;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px); opacity: 0.9; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Đếm ngược đến ngày kỷ niệm 1 năm 🎉</h1>
+  <div id="countdown"></div>
+  
+  <!-- Ảnh tình cảm -->
+  <img src="IMG_20250216_102233.jpg" alt="ảnh 1" />
+  <img src="IMG_20250216_102410.jpg" alt="ảnh 2" />
+  <img src="IMG_20250221_222122.jpg" alt="ảnh 3" />
+  <img src="sinh nhật.jpg" alt="ảnh sinh nhật" />
+  <img src="IMG_20250502_142331.jpg" alt="ảnh 5" />
+
+  <!-- Video kỷ niệm -->
+  <video controls>
+    <source src="video.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+  </video>
+
+  <!-- Lời chúc động -->
+  <div class="wish-box" id="wish">
+    Hôm nay là tròn 1 năm chúng mình bên nhau 💖<br />
+    Cảm ơn em vì đã đến trong cuộc đời anh 🥰<br />
+    Anh thương bé An rất rất nhiều 💌
+  </div>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2025-12-20T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+    }, 1000);
+
+    // Hiệu ứng "1 year" rơi rơi
+    setInterval(() => {
+      const text = document.createElement("div");
+      text.className = "falling-text";
+      text.innerText = "1 year 🎉";
+      text.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(text);
+      setTimeout(() => text.remove(), 6000);
+    }, 700);
+  </script>
+</body>
+</html>
