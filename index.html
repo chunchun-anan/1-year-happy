@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Hộp Quà Tình Yêu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffccd5, #ffe6f0);
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #c0392b;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+    .boxes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .box {
+      width: 150px;
+      height: 150px;
+      background: #fff url('https://cdn-icons-png.flaticon.com/512/3461/3461689.png') center center no-repeat;
+      background-size: 60px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .box:hover {
+      transform: scale(1.05);
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+      padding: 20px;
+      max-width: 90%;
+      width: 350px;
+      display: none;
+      z-index: 1000;
+    }
+    .popup img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .popup p {
+      font-size: 1.1em;
+      color: #444;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click vào mỗi hộp quà để xem điều bất ngờ 💝</h1>
+  <div class="boxes">
+    <div class="box" onclick="openGift(0)"></div>
+    <div class="box" onclick="openGift(1)"></div>
+    <div class="box" onclick="openGift(2)"></div>
+    <div class="box" onclick="openGift(3)"></div>
+    <div class="box" onclick="openGift(4)"></div>
+  </div>
+
+  <div class="overlay" onclick="closeGift()"></div>
+  <div class="popup" id="popup">
+    <img id="popup-img" src="" alt="Món quà">
+    <p id="popup-text"></p>
+  </div>
+
+  <script>
+    const gifts = [
+      {
+        img: "IMG_20250216_102233.jpg",
+        text: "Chúc tình yêu nhỏ của anh mỗi ngày đều vui như hôm đó – nơi ánh mắt em rực rỡ hơn cả nắng."
+      },
+      {
+        img: "IMG_20250216_102410.jpg",
+        text: "Dù ở đâu, chỉ cần có em bên cạnh, nơi đó luôn là nhà."
+      },
+      {
+        img: "IMG_20250221_222122.jpg",
+        text: "Chiếc nhẫn này tuy nhỏ, nhưng là lời hứa to lớn – mãi mãi nắm tay em đi hết cuộc đời."
+      },
+      {
+        img: "sinh nhật.jpg",
+        text: "Chúc em tuổi mới thật nhiều yêu thương, anh sẽ là người tặng em điều bất ngờ mỗi năm."
+      },
+      {
+        img: "IMG_20250502_142331.jpg",
+        text: "Từng khoảnh khắc bên em đều là một món quà. Cảm ơn em đã đến bên anh."
+      }
+    ];
+
+    function openGift(index) {
+      const popup = document.getElementById('popup');
+      const overlay = document.querySelector('.overlay');
+      document.getElementById('popup-img').src = gifts[index].img;
+      document.getElementById('popup-text').textContent = gifts[index].text;
+      popup.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    function closeGift() {
+      document.getElementById('popup').style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
