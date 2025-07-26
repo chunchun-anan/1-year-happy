@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kỷ niệm 1 năm yêu nhau</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('bo-hoa-hong.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    h1.countdown {
+      font-size: 2em;
+      text-align: center;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .falling-text {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: pink;
+      animation: fall 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 100px auto;
+    }
+
+    .gift-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px dashed pink;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .gift-box:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .gift-content {
+      display: none;
+      margin-top: 15px;
+    }
+
+    iframe.music {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      height: 170px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="countdown" id="countdown"></h1>
+
+  <div class="gift-grid">
+    <div class="gift-box" onclick="toggleGift(0)">
+      🎁 Hộp quà 1
+      <div class="gift-content">
+        <img src="chiếc nhẫn tặng bé.jpg" width="100%"><br>
+        Chiếc nhẫn này tuy nhỏ, nhưng là lời hứa to lớn – mãi mãi nắm tay em đi hết cuộc đời.
+      </div>
+    </div>
+    <div class="gift-box" onclick="toggleGift(1)">
+      🎁 Hộp quà 2
+      <div class="gift-content">
+        <img src="hộp quà vòng tay.jpg" width="100%"><br>
+        Món quà em tặng tuy nhỏ nhưng đó là tình yêu to lớn mà em dành cho anh – anh sẽ mãi trân quý.
+      </div>
+    </div>
+    <div class="gift-box" onclick="toggleGift(2)">
+      🎁 Hộp quà 3
+      <div class="gift-content">
+        <img src="sinh nhật.jpg" width="100%"><br>
+        Có lẽ đây là 1 kỷ niệm trong time line đáng nhớ!
+      </div>
+    </div>
+    <div class="gift-box" onclick="toggleGift(3)">
+      🎁 Hộp quà 4
+      <div class="gift-content">
+        <img src="trái tim đôi tay.jpg" width="100%"><br>
+        Trái tim nhỏ nhưng tình yêu đủ lớn <3
+      </div>
+    </div>
+    <div class="gift-box" onclick="toggleGift(4)">
+      🎁 Hộp quà 5
+      <div class="gift-content">
+        <img src="ảnh chụp anh và em.jpg" width="100%"><br>
+        Người mà anh luôn tin tưởng, yêu đến mãi về sau – ở bên phải anh nè!!!
+      </div>
+    </div>
+  </div>
+
+  <iframe class="music" src="https://www.youtube.com/embed/UqjDEQANriY?autoplay=1&mute=0"></iframe>
+
+  <script>
+    const gifts = document.querySelectorAll('.gift-content');
+    function toggleGift(i) {
+      gifts[i].style.display = gifts[i].style.display === 'block' ? 'none' : 'block';
+    }
+
+    function updateCountdown() {
+      const target = new Date("2025-12-20T00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff < 0) {
+        document.getElementById("countdown").innerHTML = "🎉 Đã kỷ niệm 1 năm yêu nhau!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây đến kỷ niệm 1 năm yêu nhau! ❤️`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function createFallingText() {
+      const text = document.createElement('div');
+      text.className = 'falling-text';
+      text.innerText = 'bé AN';
+      text.style.left = Math.random() * 100 + 'vw';
+      text.style.fontSize = (Math.random() * 10 + 16) + 'px';
+      document.body.appendChild(text);
+
+      setTimeout(() => {
+        document.body.removeChild(text);
+      }, 5000);
+    }
+    setInterval(createFallingText, 600);
+  </sc
